@@ -1,0 +1,37 @@
+.item {
+  border-radius: 50%;
+  width: 140px;
+  padding: 10px;
+  height: 140px;
+  margin: 10px;
+}
+
+.titulo {
+  color: white;
+  font-weight: 800;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  font-size: 14px;
+  margin-top: -70px;
+}
+
+.pic {
+  border-radius: 50%;
+  width: 120px;
+  border: solid 1px white;
+}
+
+.pic-artist {
+  border-radius: 50%;
+  width: 215px;
+  margin-top: 50px;
+
+  border: solid 1px white;
+}
+
+.item:hover {
+  box-shadow: 0px 2px 4px 0px grey;
+  border-color: #333;
+  text-decoration: none;
+}

@@ -1,0 +1,22 @@
+.busqueda {
+  display: flex;
+  width: 100%;
+  border-radius: 30px;
+  height: 45px;
+  padding: 10px;
+}
+
+input {
+  display: flex;
+  flex: 100%;
+  width: 100%;
+  border-radius: 15px;
+  padding: 10px;
+  outline: none;
+  word-wrap: break-word;
+}
+.logo {
+  width: 70%;
+  padding: 10px 0px 5px 0px;
+  margin-left: 10px;
+}
