@@ -7,7 +7,7 @@ class Searchbar extends React.Component {
     busqueda: " ",
   };
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ busqueda: e.target.value });
     console.log(e.target.name, e.target.value);
   };
   handleClick = (e) => {

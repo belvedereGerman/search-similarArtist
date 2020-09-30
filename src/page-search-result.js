@@ -9,6 +9,16 @@ class PageSearchResult extends Component {
   state = {
     busqueda: " ",
   };
+
+  componentDidMount() {
+    let search = this.props.history.location.search
+      .substr(1)
+      .replace("%20", " ");
+
+    this.setState({
+      busqueda: search,
+    });
+  }
   handleChange = (e) => {
     this.setState({
       busqueda: e.target.value,

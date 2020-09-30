@@ -4,6 +4,20 @@ import logo from "./logo.svg";
 import Footer from "./components/footer.js";
 
 class PageHome extends React.Component {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.history.push("/busqueda?" + this.state.busqueda);
+  };
+
+  onChange = (e) => {
+    this.setState({
+      busqueda: e.target.value,
+    });
+  };
+
+  state = {
+    busqueda: " ",
+  };
   render() {
     return (
       <React.Fragment>
@@ -23,13 +37,15 @@ class PageHome extends React.Component {
                     name="imput"
                     type="text"
                     placeholder="Busca una banda"
-                    onChange={this.props.onChange}
+                    onChange={this.onChange}
                   />
                 </div>
               </form>
             </div>
             <div className="actions">
-              <button className="btng"> Buscar artista similar</button>
+              <button className="btng" type="submit">
+                Buscar artista similar
+              </button>
               <button className="btng">Escuela Devrock </button>
             </div>
           </div>
