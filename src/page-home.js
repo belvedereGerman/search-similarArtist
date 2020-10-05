@@ -3,53 +3,33 @@ import "./components/page-home.css";
 import logo from "./logo.svg";
 import Footer from "./components/footer.js";
 
+import Searchbar from "./components/search-bar";
+
 class PageHome extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.history.push("/busqueda?" + this.state.busqueda);
+    this.props.history.push("/busqueda?" + this.state.parsebusqueda);
   };
 
   onChange = (e) => {
+    const busqueda = e.target.value;
     this.setState({
-      busqueda: e.target.value,
+      parsebusqueda: busqueda.replace(" ", ""),
+      busqueda: busqueda,
     });
   };
 
-  state = {
-    busqueda: " ",
-  };
   render() {
     return (
       <React.Fragment>
-        <div className="container">
-          <div className="row  centrado">
-            <div className="col-md-6 centrar">
-              <img src={logo} alt="" id="logo" />
-              <form
-                className="form-inline"
-                name="Form"
-                onSubmit={this.handleSubmit}
-              >
-                <div className="busqueda">
-                  <input
-                    value={this.props.busqueda}
-                    id="buscar"
-                    name="imput"
-                    type="text"
-                    placeholder="Busca una banda"
-                    onChange={this.onChange}
-                  />
-                </div>
-              </form>
-            </div>
-            <div className="actions">
-              <button className="btng" type="submit">
-                Buscar artista similar
-              </button>
-              <button className="btng">Escuela Devrock </button>
-            </div>
-          </div>
+        <Searchbar history={this.props.history} />
+        <div className="actions">
+          <button className="btng" type="submit">
+            Buscar artista similar
+          </button>
+          <button className="btng">Escuela Devrock </button>
         </div>
+
         <Footer />
       </React.Fragment>
     );

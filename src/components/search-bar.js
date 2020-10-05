@@ -3,22 +3,23 @@ import "./search-bar.css";
 import Logo from "../logo.svg";
 import { Link } from "react-router-dom";
 class Searchbar extends React.Component {
-  state = {
-    busqueda: " ",
-  };
-  handleChange = (e) => {
-    this.setState({ busqueda: e.target.value });
-    console.log(e.target.name, e.target.value);
-  };
-  handleClick = (e) => {
-    e.preventDefault();
-    console.log(e.target.name, "Ouch ");
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      busqueda: "",
+    };
+  }
 
-  handleSubmit = (e) => {
+  handleChange(e) {
+    this.setState({ busqueda: e.target.value });
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target.name);
-  };
+
+    this.props.history.push("/busqueda?" + this.state.busqueda);
+    console.log(this.state.busqueda);
+  }
 
   render() {
     return (
@@ -33,7 +34,7 @@ class Searchbar extends React.Component {
             <form
               className="form-inline"
               name="Form"
-              onSubmit={this.handleSubmit}
+              onSubmit={(e) => this.handleSubmit(e)}
             >
               <div className="busqueda">
                 <input
@@ -42,7 +43,7 @@ class Searchbar extends React.Component {
                   name="imput"
                   type="text"
                   placeholder="Busca una banda"
-                  onChange={this.props.onChange}
+                  onChange={(e) => this.handleChange(e)}
                 />
               </div>
             </form>
@@ -53,5 +54,4 @@ class Searchbar extends React.Component {
     );
   }
 }
-
 export default Searchbar;

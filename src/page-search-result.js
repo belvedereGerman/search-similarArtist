@@ -6,33 +6,57 @@ import SearchResult from "./components/search-result.js";
 import Footer from "./components/footer.js";
 
 class PageSearchResult extends Component {
-  state = {
-    busqueda: " ",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      results: [],
+      param: "",
+    };
+  }
 
-  componentDidMount() {
+  async componentDidMount() {
     let search = this.props.history.location.search
       .substr(1)
-      .replace("%20", " ");
+      .replace("%20", "");
+
+    const data = await fetch(
+      "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" +
+        search +
+        "&api_key=cfec20f34bb2d8fc23dcc221a9f4c00b&format=json"
+    );
+
+    const result = await data.json();
 
     this.setState({
-      busqueda: search,
+      results: result.similarartists.artist,
+      param: this.props.history.location.search.substr(1).replace("%20", " "),
     });
   }
-  handleChange = (e) => {
+
+  async componentDidUpdate() {
+    let search = this.props.history.location.search
+      .substr(1)
+      .replace("%20", "");
+
+    const data = await fetch(
+      "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=" +
+        search +
+        "&api_key=cfec20f34bb2d8fc23dcc221a9f4c00b&format=json"
+    );
+
+    const result = await data.json();
+
     this.setState({
-      busqueda: e.target.value,
+      results: result.similarartists.artist,
+      param: this.props.history.location.search.substr(1).replace("%20", " "),
     });
-  };
+  }
 
   render() {
     return (
       <React.Fragment>
-        <SearchBar
-          onChange={this.handleChange}
-          busqueda={this.state.busqueda}
-        />
-        <SearchResult busqueda={this.state.busqueda} />
+        <SearchBar history={this.props.history} />
+        <SearchResult busqueda={this.state.results} />
         <Footer />
       </React.Fragment>
     );
