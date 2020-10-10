@@ -1,17 +1,20 @@
 import React from "react";
 import "./artist-cards.css";
+import { Link } from "react-router-dom";
 class ArtistCard extends React.Component {
   render() {
     return (
       <div className=" col-3">
-        <div className="item">
-          <img
-            src={this.props.img}
-            alt="logo de iron maiden "
-            className="pic img-fluid"
-          />
-          <p className="titulo">{this.props.titulo}</p>
-        </div>
+        <Link to={"/artista?" + this.props.titulo}>
+          <div className="item">
+            <img
+              src={this.props.img}
+              alt="logo de banda "
+              className="pic img-fluid"
+            />
+            <p className="titulo">{this.props.titulo}</p>
+          </div>
+        </Link>
       </div>
     );
   }

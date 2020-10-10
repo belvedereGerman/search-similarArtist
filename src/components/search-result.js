@@ -13,8 +13,8 @@ class SearchResult extends Component {
               {this.props.busqueda.map((item, i) => {
                 return (
                   <ArtistCard
-                    img={item.image[2]["#text"]}
                     titulo={item.name}
+                    img={item.image[2]["#text"]}
                     key={i}
                   />
                 );
